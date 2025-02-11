@@ -56,10 +56,13 @@ sequenceDiagram
 > 🧨 Before you click the "Assessment Complete" button on the Learning Platform, add your answers below for each question and make a commit. It is your option to request a face-to-face meeting with a coach for a vocabulary review.
 
 1. Should transient state be represented in a database diagram? Why, or why not?
-   > Your answer here
+   > No, transient state is temporary data, in this case representing a customer's order. Once that order is placed the transient state is sent to the purchases array in the database to be stored permanently. 
+
 2. In the **FoodTruck** module, you are **await**ing the invocataion of all of the component functions _(e.g. sales, veggie options, etc.)_. Why must you use the `await` keyword there? Explain what happens if you remove it.
-   > Your answer here
+   > The component functions are all asynchronous, so the await keyword is used to make sure that the code flows as expected. Without the await keyword, lines of code would try to execute before the component functions have received a response and the logic would no longer execute as intended.
+
 3. When the user is making choices by selecting radio buttons, explain how that data is retained so that the **Purchase Combo** button works correctly.
-   > Your answer here
+   > Each of the modules that generates the radio buttons (Entrees,Vegetables,SideDishes) are listening for a change event. If this change event is triggered, it then invokes a function that was imported from the transient state module that stores that choice in transient state. The order button is listening for a click, when this is triggered it invokes the orderPlaced function which then sends the transient state to the database to be stored.
+
 4. You used the `map()` array method in the self assessment _(at least, you should have since it is a learning objective)_. Explain why that function is helpful as a replacement for a `for..of` loop.
-   > Your answer here
+   > The map method is helpful because it is a more concise way of accomplishing the same task that a for..of loop would. The map method can be used to iterate and modify data while also creating a new array, whereas in a for..of loop you would need to initialize a blank array, iterate through and existing array, set conditions and then push items into the blank array.  

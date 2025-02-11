@@ -1,0 +1,39 @@
+title House of Hummus
+participant Main
+participant Food Truck
+participant Entrees
+participant Vegetables
+participant Side Dishes
+participant Order Button
+participant Sales
+participant Transient State
+participant API
+
+Main->Food Truck:I need the function for rendering HTML
+Food Truck->Entrees:I need the Entree HTML
+Entrees->API:I need the array of entrees\n
+Entrees<--API:Here is the entree array
+note over Entrees:map entrees array and generate radio buttons
+Food Truck<--Entrees:Here is the entree HTML
+Food Truck->Vegetables:I need the vegetable HTML
+Vegetables->API:I need the array of vegetables
+Vegetables<--API:Here is the vegetable array
+note over Vegetables:map vegetables array and generate radio buttons
+Food Truck<--Vegetables:Here is the vegetable HTML
+Food Truck->Side Dishes:I need the sides HTML
+Side Dishes->API:I need the array of sides
+Side Dishes<--API:Here is the sides array
+note over Side Dishes:map sides array and generate radio buttons
+Food Truck<--Side Dishes:Here is the sides HTML
+Food Truck->Order Button:I need an order button
+Food Truck<--Order Button:Here you go
+Food Truck->Sales:I need our monthly sales HTML
+Sales->API:I need the purchases array
+Sales<--API:Here is the array of purchases
+note over Sales:map purchases and generate HTML
+Food Truck<--Sales:Here is the monthly sales HTML
+Main<--Food Truck:Here is your HTML
+note over Main,Transient State:An order has been placed
+Transient State->API:Save this order
+Transient State<--API:Saved
+note over Transient State,Main:Update UI

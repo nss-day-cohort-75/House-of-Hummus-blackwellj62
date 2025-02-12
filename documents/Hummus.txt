@@ -36,36 +36,36 @@ note over Sales:map purchases and generate HTML
 Food Truck<--Sales:Here is the monthly sales HTML
 Main<--Food Truck:Here is your HTML
 
-note over Main,Transient State:Render page
+note over Main:Render page
 
 User->Entrees:Customer chooses a base dish option
 Transient State->API:info
 note over Entrees:One of our radio buttons was changed!
-Entrees->Transient State:I need the function to set the entree choice.
-Entrees<--Transient State:Here is your setEntreeChoice function.
-note over Entrees: invoke setEntreeChoice
+Entrees->Transient State:I need  to set the entree choice.
+Entrees<--Transient State:Entree choice is set.
+
 note over Entrees,Transient State:Temporarily store the entree choice
 User->Vegetables:Customer chooses a vegetable option.
 note over Vegetables:One of our radio buttons was changed!
-Vegetables->Transient State:I need the function to set the vegetable choice
-Vegetables<--Transient State:Here is your setVegetableChoice function.
-note over Vegetables:invoke setVegetableChoice
+Vegetables->Transient State:I need  to set the vegetable choice
+Vegetables<--Transient State:Vegetable choice is set.
+
 
 note over Vegetables,Transient State:Temporarily store the vegetable choice.
 User->Side Dishes:Customer chooses a side dish option.
 note over Side Dishes:One of our radio buttons was changed!
-Side Dishes->Transient State:I need the function to set the side dish choice.
-Side Dishes<--Transient State:Here is your setSideChoice function.
-note over Side Dishes:invoke setSideChoice
+Side Dishes->Transient State:I need  to set the side dish choice.
+Side Dishes<--Transient State:Side dish choice is set.
+
 note over Side Dishes,Transient State:Temporarily store the side dish choice.
 User->Order Button:Customer submits order.
 note over Order Button:Oh no! I've been clicked!
-Order Button->Transient State: I need the the function for when an order is placed.
-Order Button<--Transient State: Here is the purchaseCombo function.
-note over Order Button:invoke purchaseCombo
+Order Button->Transient State: I need to submit an order.
+
 
 
 Transient State->API:Save this order
 Transient State<--API:Saved
-note over Transient State:reset transient state to default values.
-note over Transient State,Main:Re-render with updated list of orders
+Order Button<--Transient State: Order submitted.
+Order Button->Main:A new order has been placed
+note over Main:Re-render page

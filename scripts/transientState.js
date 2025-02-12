@@ -12,19 +12,16 @@ const defaultState = {
 
 export const setEntreeChoice = (entreeChoice) => {
     transientState.entreeId = entreeChoice
-    
     console.log(transientState)
 }
 
 export const setVegetableChoice = (vegetableChoice) => {
     transientState.vegetableId = vegetableChoice
-    
     console.log(transientState)
 }
 
 export const setSideChoice = (sideChoice) => {
     transientState.sideId = sideChoice
-    
     console.log(transientState)
 }
 
@@ -39,23 +36,18 @@ export const purchaseCombo = async () => {
     if (unSelectedOptions) {
         window.alert(`Please make a selection before submitting your order.`)
     } else {
-    const postOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(transientState)
+        const postOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(transientState)
+        }
+        const response = await fetch("http://localhost:8088/purchases", postOptions)
+
+        const comboPurchase = new CustomEvent("orderPlaced")
+        document.dispatchEvent(comboPurchase)
+
+        resetTransientState()
     }
-    const response = await fetch("http://localhost:8088/purchases", postOptions)
-
-    
-
-    const comboPurchase = new CustomEvent("orderPlaced")
-    document.dispatchEvent(comboPurchase)
-
-    resetTransientState()
-    
-
-
-}
 }
